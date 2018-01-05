@@ -1,0 +1,36 @@
+{
+  "name": "github-downloads",
+  "version": "0.0.0",
+  "description": "Count Github releases downloads",
+  "main": "index.js",
+  "repository": "https://github.com/bukinoshita/github-downloads.git",
+  "author": "Bu Kinoshita <bukinoshita@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "git-download": "index.js"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "keywords": ["github", "git", "download", "downloads", "releases"],
+  "dependencies": {
+    "meow": "^4.0.0",
+    "ora": "^1.3.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "request-promise-native": "^1.0.5",
+    "shout-error": "^0.0.2",
+    "shout-success": "^0.0.2",
+    "update-notifier": "^2.3.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "extends": ["prettier"],
+    "rules": {
+      "array-callback-return": 0
+    }
+  }
+}
