@@ -7,6 +7,9 @@ const request = require('request-promise-native')
 const ora = require('ora')
 const shoutSuccess = require('shout-success')
 const shoutError = require('shout-error')
+const isRepo = require('is-github-repo')
+const gitUrlUglify = require('git-url-uglify')
+const gitUrlPrettify = require('git-url-prettify')
 
 const cli = meow(
   `
@@ -32,10 +35,14 @@ updateNotifier({ pkg: cli.pkg }).notify()
 
 const run = async () => {
   const repo = cli.input[0]
-  const spinner = ora('Counting downloads...')
-  const gitUrl = `https://api.github.com/repos/${repo}/releases`
+  const { isGithubRepo } = isRepo(repo, { withType: true })
 
-  if (repo) {
+  if (isGithubRepo) {
+    const newRepo = gitUrlPrettify(repo)
+    const { repository } = gitUrlUglify(newRepo)
+    const spinner = ora('Counting downloads...')
+    const gitUrl = `https://api.github.com/repos/${repo}/releases`
+
     spinner.start()
 
     try {
@@ -53,7 +60,7 @@ const run = async () => {
       })
 
       spinner.stop()
-      return shoutSuccess(`Taskr has ${count} downloads.`)
+      return shoutSuccess(`${repository} has ${count} downloads.`)
     } catch (err) {
       spinner.stop()
       const error = JSON.parse(err.error)
