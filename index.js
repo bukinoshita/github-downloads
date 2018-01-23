@@ -10,6 +10,9 @@ const shoutError = require('shout-error')
 const isRepo = require('is-github-repo')
 const gitUrlUglify = require('git-url-uglify')
 const gitUrlPrettify = require('git-url-prettify')
+const { gray } = require('chalk')
+
+const rightPad = require('./lib/right-pad')
 
 const cli = meow(
   `
@@ -52,14 +55,17 @@ const run = async () => {
       const releases = JSON.parse(result)
 
       let count = 0
+      spinner.stop()
 
       releases.map(release => {
-        release.assets.map(r => {
-          count += r.download_count
+        console.log(`${gray.bold('#' + release.name)}`)
+        release.assets.map(({ name, download_count }) => {
+          console.log(`- ${rightPad(name, 25)} ${download_count} downloads`)
+          count += download_count
         })
+        console.log('\n')
       })
 
-      spinner.stop()
       return shoutSuccess(`${repository} has ${count} downloads.`)
     } catch (err) {
       spinner.stop()

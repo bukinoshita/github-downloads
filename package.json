@@ -12,14 +12,9 @@
   "scripts": {
     "test": "xo"
   },
-  "keywords": [
-    "github",
-    "git",
-    "download",
-    "downloads",
-    "releases"
-  ],
+  "keywords": ["github", "git", "download", "downloads", "releases"],
   "dependencies": {
+    "chalk": "^2.3.0",
     "git-url-prettify": "^0.0.2",
     "git-url-uglify": "^0.0.2",
     "is-github-repo": "^0.0.2",
@@ -37,11 +32,10 @@
     "xo": "^0.18.2"
   },
   "xo": {
-    "extends": [
-      "prettier"
-    ],
+    "extends": ["prettier"],
     "rules": {
-      "array-callback-return": 0
+      "array-callback-return": 0,
+      "camelcase": 0
     }
   }
 }
