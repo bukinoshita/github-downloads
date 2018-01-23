@@ -1,6 +1,6 @@
 {
   "name": "github-downloads",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Count Github releases downloads",
   "main": "index.js",
   "repository": "https://github.com/bukinoshita/github-downloads.git",
@@ -12,7 +12,13 @@
   "scripts": {
     "test": "xo"
   },
-  "keywords": ["github", "git", "download", "downloads", "releases"],
+  "keywords": [
+    "github",
+    "git",
+    "download",
+    "downloads",
+    "releases"
+  ],
   "dependencies": {
     "chalk": "^2.3.0",
     "git-url-prettify": "^0.0.2",
@@ -32,7 +38,9 @@
     "xo": "^0.18.2"
   },
   "xo": {
-    "extends": ["prettier"],
+    "extends": [
+      "prettier"
+    ],
     "rules": {
       "array-callback-return": 0,
       "camelcase": 0
